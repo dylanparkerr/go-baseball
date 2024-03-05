@@ -1,0 +1,324 @@
+attendance
+  url: https://statsapi.mlb.com/api/{ver}/attendance
+  required: teamId 
+  accepted: teamId leagueId season date leagueListId gameType fields 
+
+awards
+  url: https://statsapi.mlb.com/api/{ver}/awards{awardId}{recipients}
+  required: none 
+  accepted: sportId leagueId season hydrate fields 
+  note: Call awards endpoint with no parameters to return a list of awardIds.
+
+conferences
+  url: https://statsapi.mlb.com/api/{ver}/conferences
+  required: none 
+  accepted: conferenceId season fields 
+
+divisions
+  url: https://statsapi.mlb.com/api/{ver}/divisions
+  required: none 
+  accepted: divisionId leagueId sportId 
+  note: Call divisions endpoint with no parameters to return a list of divisions.
+
+draft
+  url: https://statsapi.mlb.com/api/{ver}/draft{prospects}{year}{latest}
+  required: none 
+  accepted: limit fields round name school state country position teamId playerId bisPlayerId 
+  note: No query parameters are honored when "latest" endpoint is queried (year is still required). Prospects and Latest cannot be used together.
+
+game
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/feed/live
+  required: none 
+  accepted: timecode hydrate fields 
+
+game_diff
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/feed/live/diffPatch
+  required: startTimecode endTimecode 
+  accepted: startTimecode endTimecode 
+
+game_timestamps
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/feed/live/timestamps
+  required: none 
+  accepted: none 
+
+game_changes
+  url: https://statsapi.mlb.com/api/{ver}/game/changes
+  required: updatedSince 
+  accepted: updatedSince sportId gameType season fields 
+
+game_contextMetrics
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/contextMetrics
+  required: none 
+  accepted: timecode fields 
+
+game_winProbability
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/winProbability
+  required: none 
+  accepted: timecode fields 
+  note: If you only want the current win probability for each team, try the game_contextMetrics endpoint instad.
+
+game_boxscore
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/boxscore
+  required: none 
+  accepted: timecode fields 
+
+game_content
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/content
+  required: none 
+  accepted: highlightLimit 
+
+game_color
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/feed/color
+  required: none 
+  accepted: timecode fields 
+
+game_color_diff
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/feed/color/diffPatch
+  required: startTimeCode endTimeCode 
+  accepted: startTimecode endTimecode 
+
+game_color_timestamps
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/feed/color/timestamps
+  required: none 
+  accepted: none 
+
+game_linescore
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/linescore
+  required: none 
+  accepted: timecode fields 
+
+game_playByPlay
+  url: https://statsapi.mlb.com/api/{ver}/game/{gamePk}/playByPlay
+  required: none 
+  accepted: timecode fields 
+
+gamePace
+  url: https://statsapi.mlb.com/api/{ver}/gamePace
+  required: season 
+  accepted: season teamIds leagueIds leagueListId sportId gameType startDate endDate venueIds orgType includeChildren fields 
+
+highLow
+  url: https://statsapi.mlb.com/api/{ver}/highLow/{orgType}
+  required: sortStat season 
+  accepted: statGroup sortStat season gameType teamId leagueId sportIds limit fields 
+  note: Valid values for orgType parameter: player, team, division, league, sport, types.
+
+homeRunDerby
+  url: https://statsapi.mlb.com/api/{ver}/homeRunDerby/{gamePk}{bracket}{pool}
+  required: none 
+  accepted: fields 
+
+league
+  url: https://statsapi.mlb.com/api/{ver}/league
+  required: sportId 
+  accepted: sportId leagueIds seasons fields 
+
+league_allStarBallot
+  url: https://statsapi.mlb.com/api/{ver}/league/{leagueId}/allStarBallot
+  required: season 
+  accepted: season fields 
+
+league_allStarWriteIns
+  url: https://statsapi.mlb.com/api/{ver}/league/{leagueId}/allStarWriteIns
+  required: season 
+  accepted: season fields 
+
+league_allStarFinalVote
+  url: https://statsapi.mlb.com/api/{ver}/league/{leagueId}/allStarFinalVote
+  required: season 
+  accepted: season fields 
+
+people
+  url: https://statsapi.mlb.com/api/{ver}/people
+  required: personIds 
+  accepted: personIds hydrate fields 
+
+people_changes
+  url: https://statsapi.mlb.com/api/{ver}/people/changes
+  required: none 
+  accepted: updatedSince fields 
+
+people_freeAgents
+  url: https://statsapi.mlb.com/api/{ver}/people/freeAgents
+  required: none 
+  accepted: order hydrate fields 
+
+person
+  url: https://statsapi.mlb.com/api/{ver}/people/{personId}
+  required: none 
+  accepted: hydrate fields 
+
+person_stats
+  url: https://statsapi.mlb.com/api/{ver}/people/{personId}/stats/game/{gamePk}
+  required: none 
+  accepted: fields 
+  note: Specify "current" instead of a gamePk for a player's current game stats.
+
+jobs
+  url: https://statsapi.mlb.com/api/{ver}/jobs
+  required: jobType 
+  accepted: jobType sportId date fields 
+
+jobs_umpires
+  url: https://statsapi.mlb.com/api/{ver}/jobs/umpires
+  required: none 
+  accepted: sportId date fields 
+
+jobs_umpire_games
+  url: https://statsapi.mlb.com/api/{ver}/jobs/umpires/games/{umpireId}
+  required: season 
+  accepted: season fields 
+
+jobs_datacasters
+  url: https://statsapi.mlb.com/api/{ver}/jobs/datacasters
+  required: none 
+  accepted: sportId date fields 
+
+jobs_officialScorers
+  url: https://statsapi.mlb.com/api/{ver}/jobs/officialScorers
+  required: none 
+  accepted: timecode fields 
+
+schedule
+  url: https://statsapi.mlb.com/api/{ver}/schedule
+  required: sportId 
+  accepted: scheduleType eventTypes hydrate teamId leagueId sportId gamePk gamePks venueIds gameTypes date startDate endDate opponentId fields 
+
+schedule_tied
+  url: https://statsapi.mlb.com/api/{ver}/schedule/games/tied
+  required: season 
+  accepted: gameTypes season hydrate fields 
+
+schedule_postseason
+  url: https://statsapi.mlb.com/api/{ver}/schedule/postseason
+  required: none 
+  accepted: gameTypes seriesNumber teamId sportId season hydrate fields 
+
+schedule_postseason_series
+  url: https://statsapi.mlb.com/api/{ver}/schedule/postseason/series
+  required: none 
+  accepted: gameTypes seriesNumber teamId sportId season fields 
+
+schedule_postseason_tuneIn
+  url: https://statsapi.mlb.com/api/{ver}/schedule/postseason/tuneIn
+  required: none 
+  accepted: teamId sportId season hydrate fields 
+  note: The schedule_postseason_tuneIn endpoint appears to return no data.
+
+seasons
+  url: https://statsapi.mlb.com/api/{ver}/seasons{all}
+  required: sportId 
+  accepted: season sportId divisionId leagueId fields 
+  note: Include "all" parameter with value of True to query all seasons. The divisionId and leagueId parameters are supported when "all" is used.
+
+season
+  url: https://statsapi.mlb.com/api/{ver}/seasons/{seasonId}
+  required: sportId 
+  accepted: sportId fields 
+
+sports
+  url: https://statsapi.mlb.com/api/{ver}/sports
+  required: none 
+  accepted: sportId fields 
+
+sports_players
+  url: https://statsapi.mlb.com/api/{ver}/sports/{sportId}/players
+  required: season 
+  accepted: season gameType fields 
+
+standings
+  url: https://statsapi.mlb.com/api/{ver}/standings
+  required: leagueId 
+  accepted: leagueId season standingsTypes date hydrate fields 
+
+stats
+  url: https://statsapi.mlb.com/api/{ver}/stats
+  required: stats group 
+  accepted: stats playerPool position teamId leagueId limit offset group gameType season sportIds sortStat order hydrate fields personId metrics 
+  note: If no limit is specified, the response will be limited to 50 records.
+
+stats_leaders
+  url: https://statsapi.mlb.com/api/{ver}/stats/leaders
+  required: leaderCategories 
+  accepted: leaderCategories playerPool leaderGameTypes statGroup season leagueId sportId hydrate limit fields statType 
+  note: If excluding season parameter to get all time leaders, include statType=statsSingleSeason or you will likely not get any results.
+
+stats_streaks
+  url: https://statsapi.mlb.com/api/{ver}/stats/streaks
+  required: streakType streakSpan season sportId limit 
+  accepted: streakType streakSpan gameType season sportId limit hydrate fields 
+  note: Valid streakType values: "hittingStreakOverall" "hittingStreakHome" "hittingStreakAway" "onBaseOverall" "onBaseHome" "onBaseAway". Valid streakSpan values: "career" "season" "currentStreak" "currentStreakInSeason" "notable" "notableInSeason".
+
+teams
+  url: https://statsapi.mlb.com/api/{ver}/teams
+  required: none 
+  accepted: season activeStatus leagueIds sportId sportIds gameType hydrate fields 
+
+teams_history
+  url: https://statsapi.mlb.com/api/{ver}/teams/history
+  required: teamIds 
+  accepted: teamIds startSeason endSeason fields 
+
+teams_stats
+  url: https://statsapi.mlb.com/api/{ver}/teams/stats
+  required: season group stats 
+  accepted: season sportIds group gameType stats order sortStat fields startDate endDate 
+  note: Use meta('statGroups') to look up valid values for group, and meta('statTypes') for valid values for stats.
+
+teams_affiliates
+  url: https://statsapi.mlb.com/api/{ver}/teams/affiliates
+  required: teamIds 
+  accepted: teamIds sportId season hydrate fields 
+
+team
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}
+  required: none 
+  accepted: season sportId hydrate fields 
+
+team_alumni
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}/alumni
+  required: season group 
+  accepted: season group hydrate fields 
+
+team_coaches
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}/coaches
+  required: none 
+  accepted: season date fields 
+
+team_personnel
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}/personnel
+  required: none 
+  accepted: date fields 
+
+team_leaders
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}/leaders
+  required: leaderCategories season 
+  accepted: leaderCategories season leaderGameTypes hydrate limit fields 
+
+team_roster
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}/roster
+  required: none 
+  accepted: rosterType season date hydrate fields 
+
+team_stats
+  url: https://statsapi.mlb.com/api/{ver}/teams/{teamId}/stats
+  required: season group 
+  accepted: season group gameType stats sportIds sitCodes fields 
+  note: Use meta('statGroups') to look up valid values for group, meta('statTypes') for valid values for stats, and meta('situationCodes') for valid values for sitCodes. Use sitCodes with stats=statSplits.
+
+transactions
+  url: https://statsapi.mlb.com/api/{ver}/transactions
+  required: teamId 
+  accepted: teamId playerId date startDate endDate sportId fields 
+
+venue
+  url: https://statsapi.mlb.com/api/{ver}/venues
+  required: venueIds 
+  accepted: venueIds season hydrate fields 
+
+meta
+  url: https://statsapi.mlb.com/api/{ver}/{type}
+  required: none 
+  accepted: [] 
+  note: The meta endpoint is used to retrieve values to be used within other API calls. Available types: awards, baseballStats, eventTypes, gameStatus, gameTypes, hitTrajectories, jobTypes, languages, leagueLeaderTypes, logicalEvents, metrics, pitchCodes, pitchTypes, platforms, positions, reviewReasons, rosterTypes, scheduleEventTypes, situationCodes, sky, standingsTypes, statGroups, statTypes, windDirection.
+

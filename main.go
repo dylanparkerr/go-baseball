@@ -9,7 +9,9 @@ import (
 
 func main() {
 	// data := getGames()
-	data := getTeam("111")
+	// data := getTeam("144")
+	// data := getMeta("statTypes")
+	data := getPlayers()
 	prettyData := prettyPrint(data)
 	fmt.Println(string(prettyData))
 }
@@ -23,26 +25,31 @@ func prettyPrint(input []byte) []byte {
 	return output.Bytes()
 }
 
-func getGames() []byte {
+func getPlayers() []byte {
 	mlb := api.NewMlbClient()
-
 	params := make(map[string]string)
 	params["sportId"] = "1"
+	return mlb.Get("sports/1/players/", params)
+}
 
-	games := mlb.Get("schedule/games/", params)
+func getMeta(meta string) []byte {
+	mlb := api.NewMlbClient()
+	params := make(map[string]string)
+	params["sportId"] = "1"
+	return mlb.Get(meta, params)
+}
 
-	return games
+func getGames() []byte {
+	mlb := api.NewMlbClient()
+	params := make(map[string]string)
+	params["sportId"] = "1"
+	return mlb.Get("schedule/games/", params)
 }
 
 func getTeam(team string) []byte {
 	mlb := api.NewMlbClient()
-
 	endpoint := "teams/" + team
-
 	params := make(map[string]string)
 	params["sportId"] = "1"
-
-	games := mlb.Get(endpoint, params)
-
-	return games
+	return mlb.Get(endpoint, params)
 }
