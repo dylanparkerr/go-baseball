@@ -22,26 +22,26 @@ func NewMlbClient() *MlbClient {
 			baseUrl: &url.URL{
 				Scheme: "https",
 				Host:   "statsapi.mlb.com",
-				Path:   "/api/v1",
+				Path:   "/api/v1/",
 			},
 		}
 	}
 	return mlbClient
 }
 
-// func (mlb *MlbClient) Get(endpoint string, params map[string]string) []byte {
-func (mlb *MlbClient) Get(endpoint string) []byte {
-	// TODO figure out if I should return error from this
-	// or just let the program die
+func (mlb *MlbClient) Get(endpoint string, params map[string]string) []byte {
+	mlbUrl := mlb.baseUrl
+	mlbUrl.Path += endpoint
 
-	// mlb.baseUrl.RawQuery = params.Encode()
-	url := mlb.baseUrl.Query()
-	url.Add("sportId", "1")
-
-	mlb.baseUrl.RawQuery = url.Encode()
+	queryValues := url.Values{}
+	for key, value := range params {
+		queryValues.Add(key, value)
+	}
+	mlbUrl.RawQuery = queryValues.Encode()
 
 	// make request
-	res, err := mlb.client.Get(mlb.baseUrl.String())
+	fmt.Printf("making request to: %s\n", mlbUrl.String())
+	res, err := mlb.client.Get(mlbUrl.String())
 	if err != nil {
 		fmt.Println(err)
 	}
